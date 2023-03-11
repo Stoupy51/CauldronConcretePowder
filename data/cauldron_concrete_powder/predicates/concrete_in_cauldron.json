@@ -1,0 +1,15 @@
+[
+	{
+		"condition": "minecraft:entity_properties",
+		"entity": "this",
+		"predicate": {
+			"location": {
+				"block": {
+					"blocks": [
+						"minecraft:water_cauldron"
+					]
+				}
+			}
+		}
+	}
+]

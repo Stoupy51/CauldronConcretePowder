@@ -1,0 +1,18 @@
+{
+	"display": {
+		"title": "Cauldron Concrete Powder",
+		"description": "v1.0.0",
+		"icon": {
+			"item": "minecraft:blue_concrete"
+		},
+		"show_toast": false,
+		"announce_to_chat": false,
+		"frame": "challenge"
+	},
+	"parent": "global:stoupy51",
+	"criteria": {
+		"always": {
+			"trigger": "minecraft:tick"
+		}
+	}
+}
