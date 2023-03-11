@@ -3,7 +3,7 @@
 		"title": "Cauldron Concrete Powder",
 		"description": "v1.0.0",
 		"icon": {
-			"item": "minecraft:blue_concrete"
+			"item": "minecraft:blue_concrete_powder"
 		},
 		"show_toast": false,
 		"announce_to_chat": false,
