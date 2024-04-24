@@ -20,7 +20,7 @@ execute if score #success cauldron_concrete_powder.dropped matches 0 store succe
 
 # If success, remove water
 execute if score #success cauldron_concrete_powder.dropped matches 1 store result score #count cauldron_concrete_powder.dropped run data get entity @s Item.Count
-execute if score #success cauldron_concrete_powder.dropped matches 1 if score #count cauldron_concrete_powder.dropped matches 16.. run function cauldron_concrete:remove_water
+execute if score #success cauldron_concrete_powder.dropped matches 1 if score #count cauldron_concrete_powder.dropped matches 16.. run function cauldron_concrete_powder:remove_water
 
 # Reset success and count
 scoreboard players reset #success cauldron_concrete_powder.dropped

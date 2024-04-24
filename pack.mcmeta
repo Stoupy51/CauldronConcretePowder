@@ -1,6 +1,10 @@
 {
 	"pack": {
 		"pack_format": 10,
+		"supported_formats": {
+			"min_inclusive": 10,
+			"max_inclusive": 41
+		},
 		"description": "Cauldron Concrete Powder [v1.0.0] by Stoupy51"
 	}
 }
