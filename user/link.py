@@ -47,7 +47,7 @@ scoreboard players set #success {namespace}.dropped 0
 {successes}
 
 # If success, remove water
-execute if score #success {namespace}.dropped matches 1 store result score #count {namespace}.dropped run data get entity @s Item.Count
+execute if score #success {namespace}.dropped matches 1 store result score #count {namespace}.dropped run data get entity @s Item.count
 execute if score #success {namespace}.dropped matches 1 if score #count {namespace}.dropped matches 16.. run function {namespace}:v{version}/remove_water
 
 # Reset success and count
