@@ -23,8 +23,8 @@ VERSION_TYPE: str = "release"
 
 # Configuration
 modrinth_config: dict = {
-	"slug": NAMESPACE,
-	"project_name": PROJECT_NAME,
+	"slug": "cauldron-concrete-powder",
+	"project_name": PROJECT_NAME.replace(" ", ""),
 	"version": VERSION,
 	"summary": SUMMARY,
 	"description_markdown": DESCRIPTION_MARKDOWN,
