@@ -12,10 +12,10 @@ def main(config: dict) -> None:
 	predicates_path: str = f"{config['build_datapack']}/data/{namespace}/predicate/v{version}"
 
 	# Add scoreboard objective in confirm_load
-	write_to_load_file(config, f"scoreboard objectives add {namespace}.dropped minecraft.custom:minecraft.drop")
+	write_load_file(config, f"scoreboard objectives add {namespace}.dropped minecraft.custom:minecraft.drop")
 
 	# Write second function
-	write_to_versioned_function(config, "second", f"""
+	write_versioned_function(config, "second", f"""
 # If need someone dropped, run function
 execute if score #check {namespace}.dropped matches 1.. run function {namespace}:v{version}/check_dropped
 
@@ -24,7 +24,7 @@ execute store result score #check {namespace}.dropped run scoreboard players res
 """)
 	
 	# Write check_dropped function
-	write_to_versioned_function(config, "check_dropped", f"""
+	write_versioned_function(config, "check_dropped", f"""
 # Seek for items in cauldrons
 execute as @e[type=item,predicate={namespace}:v{version}/concrete_in_cauldron] if data entity @s Thrower at @s run function {namespace}:v{version}/dry_concrete
 
@@ -34,12 +34,12 @@ scoreboard players reset #check {namespace}.dropped
 	
 	# Write concrete_in_cauldron predicate
 	json_content: dict = {"condition": "minecraft:entity_properties","entity": "this","predicate": {"location": {"block": {"blocks": "minecraft:water_cauldron"}}}}
-	write_to_file(f"{predicates_path}/concrete_in_cauldron.json", stp.super_json_dump(json_content, max_level = -1))
+	write_file(f"{predicates_path}/concrete_in_cauldron.json", stp.super_json_dump(json_content, max_level = -1))
 	
 	# Write dry_concrete function
 	colors: list[str] = ["white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"]
 	successes: str = "\n".join([f'execute if score #success {namespace}.dropped matches 0 store success score #success {namespace}.dropped if items entity @s contents {color}_concrete_powder run data modify entity @s Item.id set value "minecraft:{color}_concrete"' for color in colors])
-	write_to_versioned_function(config, "dry_concrete", f"""
+	write_versioned_function(config, "dry_concrete", f"""
 # Switch case
 scoreboard players set #success {namespace}.dropped 0
 {successes}
@@ -54,7 +54,7 @@ scoreboard players reset #count {namespace}.dropped
 """)
 	
 	# Write remove_water function
-	write_to_versioned_function(config, "remove_water", f"""
+	write_versioned_function(config, "remove_water", f"""
 scoreboard players set #success {namespace}.dropped 0
 execute if score #success {namespace}.dropped matches 0 store success score #success {namespace}.dropped if block ~ ~ ~ water_cauldron[level=3] run setblock ~ ~ ~ water_cauldron[level=2]
 execute if score #success {namespace}.dropped matches 0 store success score #success {namespace}.dropped if block ~ ~ ~ water_cauldron[level=2] run setblock ~ ~ ~ water_cauldron[level=1]
