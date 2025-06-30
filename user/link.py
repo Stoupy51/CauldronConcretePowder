@@ -1,63 +1,63 @@
 
+# ruff: noqa: E501
 # Imports
-import stouputils as stp
-from python_datapack.constants import *
-from python_datapack.utils.io import *
-from config import *
+from stewbeet import Context, Predicate, super_json_dump, write_load_file, write_versioned_function
+
 
 # Main function is run just before making finalyzing the build process (zip, headers, lang, ...)
-def main(config: dict) -> None:
-	namespace: str = config["namespace"]
-	version: str = config["version"]
-	predicates_path: str = f"{config['build_datapack']}/data/{namespace}/predicate/v{version}"
+def beet_default(ctx: Context) -> None:
+	ns: str = ctx.project_id
+	version: str = ctx.project_version
 
 	# Add scoreboard objective in confirm_load
-	write_load_file(config, f"scoreboard objectives add {namespace}.dropped minecraft.custom:minecraft.drop")
+	write_load_file(f"scoreboard objectives add {ns}.dropped minecraft.custom:minecraft.drop")
 
 	# Write second function
-	write_versioned_function(config, "second", f"""
+	write_versioned_function("second", f"""
 # If need someone dropped, run function
-execute if score #check {namespace}.dropped matches 1.. run function {namespace}:v{version}/check_dropped
+execute if score #check {ns}.dropped matches 1.. run function {ns}:v{version}/check_dropped
 
 # Reset player dropped score and turn #check to 1 or more
-execute store result score #check {namespace}.dropped run scoreboard players reset @a[scores={{{namespace}.dropped=1..}}] {namespace}.dropped
+execute store result score #check {ns}.dropped run scoreboard players reset @a[scores={{{ns}.dropped=1..}}] {ns}.dropped
 """)
-	
+
 	# Write check_dropped function
-	write_versioned_function(config, "check_dropped", f"""
+	write_versioned_function("check_dropped", f"""
 # Seek for items in cauldrons
-execute as @e[type=item,predicate={namespace}:v{version}/concrete_in_cauldron] if data entity @s Thrower at @s run function {namespace}:v{version}/dry_concrete
+execute as @e[type=item,predicate={ns}:v{version}/concrete_in_cauldron] if data entity @s Thrower at @s run function {ns}:v{version}/dry_concrete
 
 # Remove loop check
-scoreboard players reset #check {namespace}.dropped
+scoreboard players reset #check {ns}.dropped
 """)
-	
+
 	# Write concrete_in_cauldron predicate
 	json_content: dict = {"condition": "minecraft:entity_properties","entity": "this","predicate": {"location": {"block": {"blocks": "minecraft:water_cauldron"}}}}
-	write_file(f"{predicates_path}/concrete_in_cauldron.json", stp.super_json_dump(json_content, max_level = -1))
-	
+	predicate = Predicate(json_content)
+	predicate.encoder = lambda x: super_json_dump(x, max_level=-1)
+	ctx.data[ns].predicates[f"v{version}/concrete_in_cauldron"] = predicate
+
 	# Write dry_concrete function
 	colors: list[str] = ["white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"]
-	successes: str = "\n".join([f'execute if score #success {namespace}.dropped matches 0 store success score #success {namespace}.dropped if items entity @s contents {color}_concrete_powder run data modify entity @s Item.id set value "minecraft:{color}_concrete"' for color in colors])
-	write_versioned_function(config, "dry_concrete", f"""
+	successes: str = "\n".join([f'execute if score #success {ns}.dropped matches 0 store success score #success {ns}.dropped if items entity @s contents {color}_concrete_powder run data modify entity @s Item.id set value "minecraft:{color}_concrete"' for color in colors])
+	write_versioned_function("dry_concrete", f"""
 # Switch case
-scoreboard players set #success {namespace}.dropped 0
+scoreboard players set #success {ns}.dropped 0
 {successes}
 
 # If success, remove water
-execute if score #success {namespace}.dropped matches 1 store result score #count {namespace}.dropped run data get entity @s Item.count
-execute if score #success {namespace}.dropped matches 1 if score #count {namespace}.dropped matches 16.. run function {namespace}:v{version}/remove_water
+execute if score #success {ns}.dropped matches 1 store result score #count {ns}.dropped run data get entity @s Item.count
+execute if score #success {ns}.dropped matches 1 if score #count {ns}.dropped matches 16.. run function {ns}:v{version}/remove_water
 
 # Reset success and count
-scoreboard players reset #success {namespace}.dropped
-scoreboard players reset #count {namespace}.dropped
+scoreboard players reset #success {ns}.dropped
+scoreboard players reset #count {ns}.dropped
 """)
-	
+
 	# Write remove_water function
-	write_versioned_function(config, "remove_water", f"""
-scoreboard players set #success {namespace}.dropped 0
-execute if score #success {namespace}.dropped matches 0 store success score #success {namespace}.dropped if block ~ ~ ~ water_cauldron[level=3] run setblock ~ ~ ~ water_cauldron[level=2]
-execute if score #success {namespace}.dropped matches 0 store success score #success {namespace}.dropped if block ~ ~ ~ water_cauldron[level=2] run setblock ~ ~ ~ water_cauldron[level=1]
-execute if score #success {namespace}.dropped matches 0 store success score #success {namespace}.dropped if block ~ ~ ~ water_cauldron[level=1] run setblock ~ ~ ~ cauldron
+	write_versioned_function("remove_water", f"""
+scoreboard players set #success {ns}.dropped 0
+execute if score #success {ns}.dropped matches 0 store success score #success {ns}.dropped if block ~ ~ ~ water_cauldron[level=3] run setblock ~ ~ ~ water_cauldron[level=2]
+execute if score #success {ns}.dropped matches 0 store success score #success {ns}.dropped if block ~ ~ ~ water_cauldron[level=2] run setblock ~ ~ ~ water_cauldron[level=1]
+execute if score #success {ns}.dropped matches 0 store success score #success {ns}.dropped if block ~ ~ ~ water_cauldron[level=1] run setblock ~ ~ ~ cauldron
 """)
 
