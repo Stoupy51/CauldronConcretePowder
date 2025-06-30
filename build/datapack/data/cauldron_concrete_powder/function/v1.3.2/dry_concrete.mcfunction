@@ -1,7 +1,7 @@
 
-#> cauldron_concrete_powder:v1.3.1/dry_concrete
+#> cauldron_concrete_powder:v1.3.2/dry_concrete
 #
-# @within	cauldron_concrete_powder:v1.3.1/check_dropped
+# @within	cauldron_concrete_powder:v1.3.2/check_dropped
 #
 
 # Switch case
@@ -25,7 +25,7 @@ execute if score #success cauldron_concrete_powder.dropped matches 0 store succe
 
 # If success, remove water
 execute if score #success cauldron_concrete_powder.dropped matches 1 store result score #count cauldron_concrete_powder.dropped run data get entity @s Item.count
-execute if score #success cauldron_concrete_powder.dropped matches 1 if score #count cauldron_concrete_powder.dropped matches 16.. run function cauldron_concrete_powder:v1.3.1/remove_water
+execute if score #success cauldron_concrete_powder.dropped matches 1 if score #count cauldron_concrete_powder.dropped matches 16.. run function cauldron_concrete_powder:v1.3.2/remove_water
 
 # Reset success and count
 scoreboard players reset #success cauldron_concrete_powder.dropped
