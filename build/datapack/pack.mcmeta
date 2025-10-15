@@ -1,7 +1,9 @@
 {
 	"pack": {
-		"pack_format": 81,
-		"description": "Cauldron Concrete Powder [1.3.3] by Stoupy51"
+		"pack_format": 88,
+		"description": "Cauldron Concrete Powder [1.3.4] by Stoupy51",
+		"min_format": 88,
+		"max_format": 1000
 	},
 	"id": "cauldron_concrete_powder"
 }
