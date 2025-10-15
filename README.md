@@ -15,6 +15,7 @@ No more tedious manual placement required.
 
 💡 Originally created as a community request.
 
+![Promotional image](https://raw.githubusercontent.com/Stoupy51/CauldronConcretePowder/refs/heads/main/assets/promo_1.jpg)
 
 | ![CauldronConcretePowder Image 1](https://cdn.modrinth.com/data/sKa9BOA6/images/f3d48dcaa193b8be1a43c5be982af91964ce4be9.png) | ![CauldronConcretePowder Image 2](https://cdn.modrinth.com/data/sKa9BOA6/images/5182f0673d1bf2732b54c249fa182f06d953cf05.png) | ![CauldronConcretePowder Image 3](https://cdn.modrinth.com/data/sKa9BOA6/images/e2be47738ecebd5716b0fa5418e96472c38ad2ea.png) |
 |---|---|---|
