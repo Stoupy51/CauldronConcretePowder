@@ -1,7 +1,7 @@
 
 # ruff: noqa: E501
 # Imports
-from stewbeet import Context, Predicate, super_json_dump, write_load_file, write_versioned_function
+from stewbeet import Context, JsonDict, Predicate, json_dump, write_load_file, write_versioned_function
 
 
 # Main function is run just before making finalyzing the build process (zip, headers, lang, ...)
@@ -31,9 +31,9 @@ scoreboard players reset #check {ns}.dropped
 """)
 
 	# Write concrete_in_cauldron predicate
-	json_content: dict = {"condition": "minecraft:entity_properties","entity": "this","predicate": {"location": {"block": {"blocks": "minecraft:water_cauldron"}}}}
+	json_content: JsonDict = {"condition": "minecraft:entity_properties","entity": "this","predicate": {"location": {"block": {"blocks": "minecraft:water_cauldron"}}}}
 	predicate = Predicate(json_content)
-	predicate.encoder = lambda x: super_json_dump(x, max_level=-1)
+	predicate.encoder = lambda x: json_dump(x, max_level=-1)
 	ctx.data[ns].predicates[f"v{version}/concrete_in_cauldron"] = predicate
 
 	# Write dry_concrete function
