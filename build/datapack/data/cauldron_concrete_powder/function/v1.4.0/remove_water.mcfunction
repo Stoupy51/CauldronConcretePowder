@@ -1,9 +1,9 @@
 
-#> cauldron_concrete_powder:v1.3.4/remove_water
+#> cauldron_concrete_powder:v1.4.0/remove_water
 #
 # @executed	at @s
 #
-# @within	cauldron_concrete_powder:v1.3.4/dry_concrete
+# @within	cauldron_concrete_powder:v1.4.0/dry_concrete
 #
 
 scoreboard players set #success cauldron_concrete_powder.dropped 0
