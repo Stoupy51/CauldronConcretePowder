@@ -67,7 +67,7 @@ your_datapack/
 }
 ```
 
-You can download a template datapack from [assets/function_tag_template.zip](assets/function_tag_template.zip) and modify it to fit your needs.
+You can download a template datapack from [assets/function_tag_template.zip](https://github.com/Stoupy51/CauldronConcretePowder/blob/main/assets/function_tag_template.zip) and modify it to fit your needs.
 
 ### 💡 Example Function
 
