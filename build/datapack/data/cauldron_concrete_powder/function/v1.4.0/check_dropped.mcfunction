@@ -5,7 +5,7 @@
 #
 
 # Seek for items in cauldrons
-execute as @e[type=item,predicate=cauldron_concrete_powder:v1.4.0/concrete_in_cauldron] if data entity @s Thrower at @s run function cauldron_concrete_powder:v1.4.0/dry_concrete
+execute as @e[type=item,predicate=cauldron_concrete_powder:v1.4.0/concrete_in_cauldron] if data entity @s Thrower at @s run function #cauldron_concrete_powder:signals/dry_concrete
 
 # Remove loop check
 scoreboard players reset #check cauldron_concrete_powder.dropped

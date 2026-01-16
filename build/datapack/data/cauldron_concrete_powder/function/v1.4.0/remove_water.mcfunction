@@ -1,8 +1,6 @@
 
 #> cauldron_concrete_powder:v1.4.0/remove_water
 #
-# @executed	at @s
-#
 # @within	cauldron_concrete_powder:v1.4.0/dry_concrete
 #
 

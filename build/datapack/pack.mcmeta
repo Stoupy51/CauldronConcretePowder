@@ -4,10 +4,13 @@
 		"description": "Cauldron Concrete Powder [1.4.0] by Stoupy51",
 		"supported_formats": [
 			71,
-			71
+			9999
 		],
 		"min_format": 71,
-		"max_format": 71
+		"max_format": [
+			9999,
+			0
+		]
 	},
 	"id": "cauldron_concrete_powder"
 }
