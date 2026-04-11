@@ -1,5 +1,5 @@
 
-#> cauldron_concrete_powder:v1.5.1/load/enumerate
+#> cauldron_concrete_powder:v1.5.2/load/enumerate
 #
 # @within	#cauldron_concrete_powder:enumerate
 #
@@ -11,5 +11,5 @@ execute unless score #cauldron_concrete_powder.major load.status matches 1.. run
 execute if score #cauldron_concrete_powder.major load.status matches 1 unless score #cauldron_concrete_powder.minor load.status matches 5.. run scoreboard players set #cauldron_concrete_powder.minor load.status 5
 
 # If current patch is too low, set it to the current patch (only if major and minor are correct)
-execute if score #cauldron_concrete_powder.major load.status matches 1 if score #cauldron_concrete_powder.minor load.status matches 5 unless score #cauldron_concrete_powder.patch load.status matches 1.. run scoreboard players set #cauldron_concrete_powder.patch load.status 1
+execute if score #cauldron_concrete_powder.major load.status matches 1 if score #cauldron_concrete_powder.minor load.status matches 5 unless score #cauldron_concrete_powder.patch load.status matches 2.. run scoreboard players set #cauldron_concrete_powder.patch load.status 2
 
