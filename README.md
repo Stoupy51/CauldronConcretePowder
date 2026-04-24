@@ -116,11 +116,5 @@ src/main/resources/data/
 
 ## ⭐ Star History
 
-<a href="https://star-history.com/#Stoupy51/CauldronConcretePowder&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Stoupy51/CauldronConcretePowder&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Stoupy51/CauldronConcretePowder&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Stoupy51/CauldronConcretePowder&type=Date" />
- </picture>
-</a>
+[![Star History Chart](https://api.star-history.com/chart?repos=Stoupy51/CauldronConcretePowder&type=date&legend=top-left)](https://www.star-history.com/?repos=Stoupy51%2FCauldronConcretePowder&type=date&legend=top-left)
 
