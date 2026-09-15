@@ -32,7 +32,7 @@ scoreboard players reset #check {ns}.dropped
 """)
 
 	# Write concrete_in_cauldron predicate
-	json_content: JsonDict = {"condition": "minecraft:entity_properties","entity": "this","predicate": {"location": {"block": {"blocks": "minecraft:water_cauldron"}}}}
+	json_content: JsonDict = {"type": "minecraft:entity_properties","entity": "this","predicate": {"location": {"block": {"blocks": "minecraft:water_cauldron"}}}}
 	predicate = Predicate(json_content)
 	predicate.encoder = lambda x: stp.json_dump(x, max_level=-1)
 	ctx.data[ns].predicates[f"v{version}/concrete_in_cauldron"] = predicate
