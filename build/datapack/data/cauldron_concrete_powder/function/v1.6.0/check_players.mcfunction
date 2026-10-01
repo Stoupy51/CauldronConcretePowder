@@ -1,7 +1,7 @@
 
-#> cauldron_concrete_powder:v1.5.4/check_players
+#> cauldron_concrete_powder:v1.6.0/check_players
 #
-# @within	cauldron_concrete_powder:v1.5.4/second
+# @within	cauldron_concrete_powder:v1.6.0/second
 #
 
 # Reset inventory changed flag
