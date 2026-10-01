@@ -13,6 +13,6 @@ execute if score #always_check cauldron_concrete_powder.config matches 1.. run r
 # If need someone dropped, run function
 execute if score #check cauldron_concrete_powder.dropped matches 1.. run function cauldron_concrete_powder:v1.5.4/check_dropped
 
-# Reset player dropped score and turn #check to 1 or more
-execute store result score #check cauldron_concrete_powder.dropped run scoreboard players reset @a[scores={cauldron_concrete_powder.dropped=1..}] cauldron_concrete_powder.dropped
+# If a player's inventory changed, check if someone dropped an item
+execute if score #inventory_changed cauldron_concrete_powder.dropped matches 1 run function cauldron_concrete_powder:v1.5.4/check_players
 
