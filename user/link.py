@@ -59,9 +59,6 @@ scoreboard players reset #check {ns}.dropped
 	write_versioned_function("check_all", f"""
 # Seek for every item in cauldrons, no matter who dropped it
 execute as @e[type=item,predicate={ns}:v{version}/concrete_in_cauldron] at @s run function #{ns}:signals/dry_concrete
-
-# Always return a value so the caller's "return run" stops second.mcfunction
-return 1
 """)
 
 	# Write concrete_in_cauldron predicate
