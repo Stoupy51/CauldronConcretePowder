@@ -20,6 +20,28 @@ No more tedious manual placement required.
 | ![CauldronConcretePowder Image 1](https://cdn.modrinth.com/data/sKa9BOA6/images/f3d48dcaa193b8be1a43c5be982af91964ce4be9.png) | ![CauldronConcretePowder Image 2](https://cdn.modrinth.com/data/sKa9BOA6/images/5182f0673d1bf2732b54c249fa182f06d953cf05.png) | ![CauldronConcretePowder Image 3](https://cdn.modrinth.com/data/sKa9BOA6/images/e2be47738ecebd5716b0fa5418e96472c38ad2ea.png) |
 |---|---|---|
 
+## ⚙️ Configuration
+
+### 🌊 Convert concrete powder not dropped by a player
+
+Starting version `1.6.0`, you can make the datapack convert **every** concrete powder item that lands in a water cauldron,
+not only the ones dropped by a player (e.g. items carried by a water stream, dispensed by droppers, broken from falling blocks, etc.).
+
+Run this command once (it is saved with your world):
+
+```mcfunction
+scoreboard players set #always_check cauldron_concrete_powder.config 1
+```
+
+To go back to the default behavior (only player-dropped items), run:
+
+```mcfunction
+scoreboard players reset #always_check cauldron_concrete_powder.config
+```
+
+> ⚡ By default, items are only checked when a player has dropped something, which is the most performant option.
+> When `#always_check` is enabled, items inside water cauldrons are checked every second instead.
+
 ## 🔧 Adding Custom Cauldron Recipes
 
 CauldronConcretePowder uses function tags to allow other datapacks to easily add their own "cauldron recipes".<br>
