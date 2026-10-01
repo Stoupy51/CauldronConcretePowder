@@ -10,11 +10,15 @@ def beet_default(ctx: Context) -> None:
 	ns: str = ctx.project_id
 	version: str = ctx.project_version
 
-	# Add scoreboard objective in confirm_load
+	# Add scoreboard objectives in confirm_load
 	write_load_file(f"scoreboard objectives add {ns}.dropped minecraft.custom:minecraft.drop")
+	write_load_file(f"scoreboard objectives add {ns}.config dummy")
 
 	# Write second function
 	write_versioned_function("second", f"""
+# If configured, check every item in cauldrons (not only player-dropped ones) and stop here
+execute if score #always_check {ns}.config matches 1.. run return run function {ns}:v{version}/check_all
+
 # If need someone dropped, run function
 execute if score #check {ns}.dropped matches 1.. run function {ns}:v{version}/check_dropped
 
@@ -29,6 +33,15 @@ execute as @e[type=item,predicate={ns}:v{version}/concrete_in_cauldron] if data 
 
 # Remove loop check
 scoreboard players reset #check {ns}.dropped
+""")
+
+	# Write check_all function (used when #always_check is enabled)
+	write_versioned_function("check_all", f"""
+# Seek for every item in cauldrons, no matter who dropped it
+execute as @e[type=item,predicate={ns}:v{version}/concrete_in_cauldron] at @s run function #{ns}:signals/dry_concrete
+
+# Always return a value so the caller's "return run" stops second.mcfunction
+return 1
 """)
 
 	# Write concrete_in_cauldron predicate

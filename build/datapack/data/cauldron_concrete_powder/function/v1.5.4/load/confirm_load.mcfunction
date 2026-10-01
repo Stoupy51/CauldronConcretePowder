@@ -10,4 +10,5 @@ scoreboard players set #cauldron_concrete_powder.loaded load.status 1
 function cauldron_concrete_powder:v1.5.4/load/set_items_storage
 
 scoreboard objectives add cauldron_concrete_powder.dropped minecraft.custom:minecraft.drop
+scoreboard objectives add cauldron_concrete_powder.config dummy
 
